@@ -60,6 +60,24 @@ class LinkedList {
     return currentNode;
   }
 
+  // Finds the node with the specified data and removes it from the list
+  remove(data) {
+    const index = this.find(data);
+    if (index === null) {
+      return false
+    }
+
+    if (this.at(index) === this.head) {
+      this.head = this.at(1);
+      this.size--
+      return true;
+    }
+
+    this.at(index - 1).next = this.at(index + 1);
+    this.size--
+    return true;
+  }
+
   // Removes a node from the end of the list
   pop() {
     if (this.size <= 1) {
@@ -117,11 +135,18 @@ class LinkedList {
   }
 }
 
-const list = new LinkedList();
-list.append("dog");
-list.append("cat");
-list.append("parrot");
-list.append("hamster");
-list.append("snake");
-list.append("turtle");
-console.log(list.toString());
+// const list = new LinkedList();
+// list.append("dog");
+// list.append("cat");
+// list.append("parrot");
+// list.append("hamster");
+// list.append("snake");
+// list.append("turtle");
+// console.log(list.toString());
+// console.log(list.head)
+// list.remove("dog");
+// console.log(list.toString());
+
+
+// For hash map purposes only
+export { LinkedList };
